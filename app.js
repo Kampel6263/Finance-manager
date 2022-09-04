@@ -11,6 +11,8 @@ app.use("/api/auth", require("./routes/auth.routes"));
 app.use("/api/bank", require("./routes/bank.routes"));
 app.use("/api/user", require("./routes/user.routes"));
 app.use("/api/cost", require("./routes/cost.routes"));
+app.use("/api/archive", require("./routes/archive.routes"));
+app.use("/api/currency", require("./routes/currency.routes"));
 
 if (process.env.NODE_ENV === "production") {
   app.use("/", express.static(path.join(__dirname, "client", "build")));

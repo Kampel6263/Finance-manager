@@ -8,10 +8,7 @@ router.get("/", auth, async (req, res) => {
   try {
     const data = await Peter.findOne({ name: "storage" });
 
-    setTimeout(
-      () => res.status(201).json({ message: "Succes", response: data }),
-      500
-    );
+    res.status(201).json({ message: "Succes", response: data });
   } catch (e) {
     res.status(500).json({ message: "Server error" });
   }

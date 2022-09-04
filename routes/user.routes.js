@@ -9,9 +9,8 @@ const auth = require("../middleware/auth.middleware");
 router.get("/", auth, async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.user.userId });
-    setTimeout(() => {
-      res.status(201).json({ message: "Succes", response: user });
-    }, 300);
+
+    res.status(201).json({ message: "Succes", response: user });
   } catch (e) {
     res.status(500).json({ message: "Server error" });
   }
@@ -20,9 +19,8 @@ router.get("/", auth, async (req, res) => {
 router.get("/all", auth, async (req, res) => {
   try {
     const user = await User.find();
-    setTimeout(() => {
-      res.status(201).json({ message: "Succes", response: user });
-    }, 300);
+
+    res.status(201).json({ message: "Succes", response: user });
   } catch (e) {
     res.status(500).json({ message: "Server error" });
   }

@@ -16,6 +16,9 @@ router.post(
   ],
   async (req, res) => {
     try {
+      // return res
+      //   .status(403)
+      //   .json({ message: "The administrator forbade registration" });
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
@@ -24,7 +27,7 @@ router.post(
           .json({ errors: errors.array(), message: "Invalid data" });
       }
 
-      const { email, password, name } = req.body;
+      const { email, password, name, img } = req.body;
 
       const candidate = await User.findOne({ email });
 
@@ -33,9 +36,9 @@ router.post(
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
-      const user = new User({ email, password: hashedPassword, name });
-      console.log(user, "save");
-      await user.save();
+      const user = new User({ email, password: hashedPassword, name, img });
+
+      // await user.save();
 
       res.status(201).json({ message: "User created" });
     } catch (e) {
